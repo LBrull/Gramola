@@ -1,0 +1,105 @@
+﻿/*.list-background-color {*/
+    /*background-color: rgb(111,59,72);*/
+    /*border: 5px solid darkgrey;
+    border-radius: 10px !important;
+    margin: 10px;
+}*/
+.list-group-item.js-songFromBiblioteca {
+    padding: 1.3rem 1.3rem;
+    border: 6px solid darkgrey;
+    border-radius: 10px !important;
+    margin: 0px !important;
+}
+
+.list-group-item.active {
+    color: black;
+    background-color: #f4cbbe;
+    border: 6px solid darkgrey !important;
+    margin: 0px !important;
+}
+
+.page-background-color {
+    background-color: darkgrey;
+}
+
+body {
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.list-group {
+    overflow: auto;
+    margin-top:1%;
+}
+
+/*#pageMainContent {
+    color: rgb(240,240,240);
+}*/
+    .my-spinner {
+    height:100vh;
+}
+
+/*button*/
+.btn-gramola {
+    color: black;
+    background-color: #f4cbbe;
+    border-color: #f4cbbe;
+}
+
+.btn-gramola:hover {
+    color: black;
+    background-color: #ffc6b3;
+    border-color: #f4cbbe;
+}
+
+.btn-check:focus + .btn-gramola, .btn-gramola:focus {
+    color: black;
+    background-color: #ffc6b3;
+    border-color: #f4cbbe;
+    box-shadow: 0 0 0 0.25rem #f4cbbe;
+}
+
+.btn-check:checked + .btn-gramola, .btn-check:active + .btn-gramola, .btn-gramola:active, .btn-gramola.active, .show > .btn-gramola.dropdown-toggle {
+    color: black;
+    background-color: #ffbaa0;
+    border-color: #f4cbbe;
+}
+
+.btn-check:checked + .btn-gramola:focus, .btn-check:active + .btn-gramola:focus, .btn-gramola:active:focus, .btn-gramola.active:focus, .show > .btn-gramola.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.25rem #f4cbbe;
+}
+
+.btn-gramola:disabled, .btn-gramola.disabled {
+    color: black;
+    background-color: #f4cbbe;
+    border-color: #f4cbbe;
+}
+
+#controls {
+    position: absolute;
+    z-index: 99999999;
+    background-color: rgba(255, 198, 179, 0.50);
+    border: 5px rgba(255, 198, 179, 0.50);
+    border-radius: 25px !important;
+    text-align: center;
+    width: 15%;
+    min-width: 175px;
+    height: auto;
+}
+
+.row.js-info {
+    padding: 0.5rem;
+}
+.row.js-controls {
+    padding: 0.5rem;
+}
+.progress {
+    height:10px;
+    padding-left:0;
+    padding-right:0;
+}
+.row.js-progress {
+    margin-left: 0;
+    margin-right: 0;
+}
+
