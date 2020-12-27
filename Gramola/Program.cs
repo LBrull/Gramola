@@ -14,6 +14,7 @@ namespace Gramola
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            AppContext.SetSwitch("Switch.Microsoft.AspNetCore.Mvc.EnableRangeProcessing", true);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

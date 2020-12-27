@@ -82,8 +82,8 @@ body {
     border: 5px rgba(255, 198, 179, 0.50);
     border-radius: 25px !important;
     text-align: center;
-    width: 15%;
-    min-width: 175px;
+    width: 20%;
+    min-width: 350px;
     height: auto;
 }
 

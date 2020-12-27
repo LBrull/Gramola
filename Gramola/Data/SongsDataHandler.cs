@@ -13,15 +13,21 @@ namespace Gramola.Data
             context = new GramolaContext(new Microsoft.EntityFrameworkCore.DbContextOptions<GramolaContext>());
         }
 
-        public async Task<IEnumerable<Song>> GetSongs()
+        public IEnumerable<Song> GetSongs()
         {
             return context.Songs;
-        } 
+        }
 
         public void AddSong(Song song)
         {
             context.Songs.Add(song);
             context.SaveChanges();
+        }
+
+        public Song getSongById(int id)
+        {
+            return context.Songs.Find(id);
+
         }
     }
 }

@@ -5,21 +5,19 @@
         <ul class="list-group">
             @foreach (var song in Model)
             {
-                <li class="list-group-item list-background-color list-group-item-action js-songFromBiblioteca">
+                <li class="list-group-item list-background-color list-group-item-action js-songFromBiblioteca" data-id="@song.id" data-artist="@song.artist" data-name="@song.name">
                     <div class="row">
                         <div class="col-9 col-sm-10 col-md-11 col-lg-11 col-xl-11 col-xxl-11 text-truncate my-auto">
                             @song.artist - @song.name
                         </div>
                         <div class="col-3 col-sm-2 col-md-1 col-lg-1 col-xl-1 col-xxl-1 my-auto">
-                            @*<button type="button" class="btn btn-gramola">
-                                <i class="fas fa-play"></i>
-                            </button>*@
+                            <button type="button" class="btn btn-gramola js-audioDownload">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
                         </div>
                     </div>
-                    @*<audio src="@song.path" type="audio/mpeg"></audio>
-                    <button type="button" class="btn btn-secondary" onclick="playSong('@song.path')">
-                        <i class="fas fa-play"></i>
-                    </button>*@
+                    @*<audio class="js-audioPlayer" src="http://localhost:52423/Home/GetSong" type="audio/mpeg"></audio>*@
+
                 </li>
             }
 

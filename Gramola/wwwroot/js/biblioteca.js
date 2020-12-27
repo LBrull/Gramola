@@ -11,21 +11,37 @@
         $('#pageMainContent').empty();
         $('#pageMainContent').html(result);
 
-        $('.js-songFromBiblioteca').on('click', function () {
+        $('.js-songFromBiblioteca').not('.js-audioDownload').on('click', function () {
             $('.js-songFromBiblioteca').removeClass('active');
             $(this).addClass('active');
+            var id = $(this).data('id');
+            var artist = $(this).data('artist');
+            var name = $(this).data('name');
+            playSong(id, artist, name);
         });
+
         $('#controls').draggable();
         $('#controls').removeAttr('hidden');
+
+        $('.js-audioDownload').off().on('click', function (e) {
+            e.stopPropagation();
+            var id = $(this).closest('li').data('id');
+            downloadSong(id);
+        });
     });
 }
 
-function playSong(songPath) {
-    $.ajax({
-        url: "/Home/PlaySong" + "/" + songPath
-    }).done(function (result) {
-        //$('#pageMainContent').html(result);
-    });
+function playSong(id, artist, name) {
+
+    var root = window.location.host;
+    var fullPath = "http://" + root + "/Home/GetSong/" + id;
+    $('.js-audioPlayer').attr('src', fullPath);
+    var actualSongInfo = artist + " - " + name;
+    $('.js-playerActualSongInfo').text(actualSongInfo);
+}
+
+function downloadSong(id) {
+    window.location = "http://" + window.location.host + "/Home/GetSong/" + id
 }
 
 function onMobile() {
