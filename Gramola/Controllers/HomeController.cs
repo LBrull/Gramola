@@ -9,6 +9,9 @@ using Gramola.Models;
 using System.IO;
 using Gramola.Data;
 using Microsoft.Net.Http.Headers;
+using System.Net;
+using System.Net.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace Gramola.Controllers
 {
@@ -62,6 +65,13 @@ namespace Gramola.Controllers
             string downloadName =song.artist.ToString() + '-' + song.name.ToString() + ".mp3"; 
 
             return File(memory, "audio/mpeg", downloadName, true);
+        }
+
+        [HttpPost]
+        public IActionResult UploadSong(UploadingModel uploadingModel)
+        {
+            
+            return Ok();
         }
     }
 }

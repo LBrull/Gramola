@@ -51,4 +51,3 @@ function onMobile() {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
 }
-
