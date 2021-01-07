@@ -24,13 +24,9 @@
         <div class=" border-right" id="sidebar-wrapper">
             <div class="sidebar-heading"><img class="" src="~/images/Gramola-image_100.png" />Gramola</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action" onclick="getBiblioteca()">Biblioteca</a>
-                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#uploadSongModal" onclick="closeSidebar()">Subir música</a>
-                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#uploadSongModal" onclick="closeSidebar()">Subir música</a>
-                @*<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>*@
+                <a class="list-group-item list-group-item-action" onclick="getBiblioteca()"><i class="fas fa-music mr-2"></i>   Biblioteca</a>
+                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#uploadSongModal" onclick="closeSidebar()"><i class="fas fa-upload mr-2"></i>   Subir música</a>
+                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#searchModal" onclick="closeSidebar()"><i class="fas fa-search mr-2"></i>   Buscar</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -48,14 +44,12 @@
             <div class="container-fluid" id="pageMainContent">
 
             </div>
-
         </div>
         <!-- /#page-content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
     @* MODAL UPLOAD MUSIC *@
-
     <!-- Modal -->
     <div class="modal fade" id="uploadSongModal" tabindex="-1" role="dialog" aria-labelledby="uploadSongModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -120,7 +114,50 @@
             </div>
         </div>
     </div>
+    @* ****************** *@
 
+    @* MODAL SEARCH MUSIC *@
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Buscar música</h5>
+                    <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+
+                        <div class="form js-searchSongsForm">
+                            @*<div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputSearchBy">Buscar por</label>
+                                </div>
+                                <select class="custom-select form-select" id="inputSearchBy" onselect="refreshModalContent()">
+                                    <option selected>Seleccionar...</option>
+                                    <option value="Artist">Artista</option>
+                                    <option value="Title">Título</option>
+                                    <option value="Uploader">Propietario</option>
+                                    <option value="Style">Estilo</option>
+                                </select>
+                            </div>*@
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputSearch">Buscar</span>
+                                </div>
+                                <input type="text" class="form-control js-searchWord" placeholder="Escribir..." aria-label="Buscar" aria-describedby="inputSearch">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-gramola js-buscarMusica" onclick="searchSongs()">Buscar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @* ****************** *@
 
     <!-- Bootstrap core JavaScript -->

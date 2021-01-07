@@ -53,3 +53,36 @@ function onMobile() {
     })(navigator.userAgent || navigator.vendor || window.opera);
     return check;
 }
+
+function searchSongs() {
+    var searchWord = $(".js-searchWord").val();
+
+    $.ajax({
+        url: "/Home/SearchSongs?searchWord=" + searchWord + "&searchStyle=null",
+        type: 'GET'
+    }).done(function (result) {
+        $('.js-navBar_title').text('Gramola - Biblioteca');
+        $('#pageMainContent').empty();
+        $('#pageMainContent').html(result);
+
+        $('.js-songFromBiblioteca').not('.js-audioDownload').on('click', function () {
+            $('.js-songFromBiblioteca').removeClass('active');
+            $(this).addClass('active');
+            var id = $(this).data('id');
+            var artist = $(this).data('artist');
+            var name = $(this).data('name');
+            playSong(id, artist, name);
+        });
+        $('#controls').removeAttr('hidden');
+
+        $("#searchModal").modal('toggle');
+
+        $('.js-audioDownload').off().on('click', function (e) {
+            e.stopPropagation();
+            var id = $(this).closest('li').data('id');
+            downloadSong(id);
+        });
+
+
+    });
+}

@@ -49,12 +49,27 @@ namespace Gramola.Controllers
             return PartialView("Views/Partial/Biblioteca.cshtml", allSongs);
             
         }
+        //[HttpGet("{searchWord}/{searchStyle}")]
+        public PartialViewResult SearchSongs(string searchWord, string searchStyle)
+        {
+            SongsDataHandler sdh = new SongsDataHandler();
+            IEnumerable<Song> songs = null;
+            if (searchStyle == "null")
+            {
+                songs = sdh.GetSongsByText(searchWord).ToList();
+            }
+            else
+            {
+
+            }
+            return PartialView("Views/Partial/Biblioteca.cshtml", songs);
+        }
 
         [HttpGet]
         public async Task<FileStreamResult> GetSong(int id)
         {
             SongsDataHandler sdh = new SongsDataHandler();
-            Song song = sdh.getSongById(id);
+            Song song = sdh.GetSongById(id);
 
             var filename = song.path;
             var memory = new MemoryStream();
