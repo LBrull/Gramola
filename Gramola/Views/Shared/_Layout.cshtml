@@ -25,11 +25,12 @@
             <div class="sidebar-heading"><img class="" src="~/images/Gramola-image_100.png" />Gramola</div>
             <div class="list-group list-group-flush">
                 <a class="list-group-item list-group-item-action" onclick="getBiblioteca()">Biblioteca</a>
-                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#uploadSongModal">Subir música</a>
+                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#uploadSongModal" onclick="closeSidebar()">Subir música</a>
+                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#uploadSongModal" onclick="closeSidebar()">Subir música</a>
                 @*<a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>*@
+        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>*@
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -45,25 +46,9 @@
             </nav>
 
             <div class="container-fluid" id="pageMainContent">
+
             </div>
 
-            <div id="controls" draggable="true" title="controls" class="container-fluid" hidden>
-                <div class="row js-info">
-                    <div class="col js-playerActualSongInfo text-truncate"></div>
-                </div>
-
-                <div class="row js-progress">
-                    <div class="col">
-                        <audio controls autoplay class="js-audioPlayer" type="audio/mpeg"></audio>
-                        @*<div class="progress-bar bg-dark w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>*@
-                    </div>
-                </div>
-                @*<div class="row js-controls">
-                        <div class="col"><i class="fas fa-step-backward"></i></div>
-                        <div class="col"><i class="fas fa-pause"></i></div>
-                        <div class="col"><i class="fas fa-step-forward"></i></div>
-                    </div>*@
-            </div>
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -86,7 +71,7 @@
                         <div class="form js-uploadSongForm">
                             <div class="input-group mb-3">
                                 <div class="custom-file" style="width:100%">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile" style="width:100%" required>
+                                    <input type="file" class="custom-file-input btn btn-gramola" id="inputGroupFile" style="width:100%" required>
                                 </div>
                             </div>
                             <div class="input-group mb-3">
@@ -130,7 +115,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary js-subirMusica" onclick="uploadSong()">Subir</button>
+                    <button type="button" class="btn btn-gramola js-subirMusica" onclick="uploadSong()">Subir</button>
                 </div>
             </div>
         </div>

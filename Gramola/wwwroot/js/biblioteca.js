@@ -20,7 +20,9 @@
             playSong(id, artist, name);
         });
 
-        $('#controls').draggable();
+        //$('#controls').draggable({
+        //    containment: "parent"
+        //});
         $('#controls').removeAttr('hidden');
 
         $('.js-audioDownload').off().on('click', function (e) {

@@ -1,26 +1,37 @@
 ﻿@model List<Song>
 
-<div class="row">
-    <div class="col col-12">
-        <ul class="list-group">
-            @foreach (var song in Model)
-            {
-                <li class="list-group-item list-background-color list-group-item-action js-songFromBiblioteca" data-id="@song.id" data-artist="@song.artist" data-name="@song.name">
-                    <div class="row">
-                        <div class="col-9 col-sm-10 col-md-11 col-lg-11 col-xl-11 col-xxl-11 text-truncate my-auto">
-                            @song.artist - @song.name
+<div class="row justify-content-center h-100">
+    <div class="h-100 d-flex flex-column">
+        <div class="row flex-grow-1 songs">
+            <ul class="list-group songs-ul">
+                @foreach (var song in Model)
+                {
+                    <li class="list-group-item list-background-color list-group-item-action js-songFromBiblioteca" data-id="@song.id" data-artist="@song.artist" data-name="@song.name">
+                        <div class="row">
+                            <div class="col text-truncate my-auto">
+                                @song.artist - @song.name
+                            </div>
+                            <div class="col col-auto align-self-end my-auto">
+                                <button type="button" class="btn btn-gramola js-audioDownload">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-3 col-sm-2 col-md-1 col-lg-1 col-xl-1 col-xxl-1 my-auto">
-                            <button type="button" class="btn btn-gramola js-audioDownload">
-                                <i class="fas fa-arrow-down"></i>
-                            </button>
-                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="row bg-gramola bottom-bar">
+            <div class="col d-flex flex-column" id="controls" title="controls">
+                <div class="row js-info">
+                    <div class="col text-truncate info-song"><h5 class="js-playerActualSongInfo mt-3"></h5></div>
+                </div>
+                <div class="row js-progress mt-auto">
+                    <div class="col">
+                        <audio controls autoplay class="js-audioPlayer mt-1 mb-1" type="audio/mpeg"></audio>
                     </div>
-                    @*<audio class="js-audioPlayer" src="http://localhost:52423/Home/GetSong" type="audio/mpeg"></audio>*@
-
-                </li>
-            }
-
-        </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

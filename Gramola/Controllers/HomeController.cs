@@ -19,6 +19,7 @@ namespace Gramola.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private SongsDataHandler songsDataHandler = new SongsDataHandler();
+        private string songsPath = @"C:\Users\Laura\Music\";
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -70,8 +71,37 @@ namespace Gramola.Controllers
         [HttpPost]
         public IActionResult UploadSong(UploadingModel uploadingModel)
         {
-            
-            return Ok();
+            try
+            {
+                var pathToSave = songsPath + uploadingModel.path + ".mp3";
+
+                Song newSong = new Song();
+                newSong.artist = uploadingModel.artist;
+                newSong.extension = "mp3";
+                newSong.name = uploadingModel.name;
+                newSong.path = pathToSave;
+                newSong.SetStyle(uploadingModel.style);
+                newSong.uploader = uploadingModel.uploader;
+
+                if (ModelState.IsValid)
+                {
+                    using (FileStream fs = System.IO.File.Create(pathToSave))
+                    {
+                        uploadingModel.fileSong.CopyTo(fs);
+                        fs.Flush();
+                    }
+                    songsDataHandler.AddSong(newSong);
+                    return Ok(200);
+                }
+                else
+                {
+                    return StatusCode(422);
+                }
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
     }
 }
