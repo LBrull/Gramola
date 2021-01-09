@@ -117,3 +117,7 @@ nav {
 .songs-ul {
     padding: 0;
 }
+
+.actual-song {
+    margin-top: 10px;
+}

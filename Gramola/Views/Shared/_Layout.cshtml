@@ -18,7 +18,7 @@
 
 <body>
 
-    <div class="d-flex" id="wrapper">
+    <div class="d-flex js-sidebar" id="wrapper">
 
         <!-- Sidebar -->
         <div class=" border-right" id="sidebar-wrapper">
@@ -26,23 +26,56 @@
             <div class="list-group list-group-flush">
                 <a class="list-group-item list-group-item-action" onclick="getBiblioteca()"><i class="fas fa-music mr-2"></i>   Biblioteca</a>
                 <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#uploadSongModal" onclick="closeSidebar()"><i class="fas fa-upload mr-2"></i>   Subir música</a>
-                <a class="list-group-item list-group-item-action" data-toggle="modal" data-target="#searchModal" onclick="closeSidebar()"><i class="fas fa-search mr-2"></i>   Buscar</a>
+                <a class="list-group-item list-group-item-action" @*data-toggle="modal" data-target="#searchModal" onclick="closeSidebar()"*@><i class="fas fa-search mr-2"></i>   Búsqueda avanzada</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper" class="page-background-color">
             <nav class="navbar navbar-expand-lg bg-white border-bottom row" style="margin-left:0;margin-right:0">
-                <div class="col-4 col-sm-2 col-md-1 col-lg-1 col-xl-1 col-xxl-1">
+                <div class="col col-auto">
+                    @*<div class="col-4 col-sm-2 col-md-1 col-lg-1 col-xl-1 col-xxl-1">*@
                     <button type="button" class="btn btn-gramola" id="menu-toggle"><i class="fas fa-bars" aria-hidden="true"></i></button>
                 </div>
-                <div class="col-8 col-sm-10 col-md-11 col-lg-11 col-xl-11 col-xxl-11">
+                <div class="col text-truncate my-auto align-self-center">
+                    @*<div class="col-8 col-sm-10 col-md-11 col-lg-11 col-xl-11 col-xxl-11">*@
                     <h4 class="js-navBar_title my-auto text-truncate">Gramola</h4>
+                </div>
+                <div class="col col-auto align-self-end my-auto" data-toggle="modal" data-target="#searchModal" onclick="closeSidebar()">
+                    @*<div class="col-8 col-sm-10 col-md-11 col-lg-11 col-xl-11 col-xxl-11">*@
+                    <span class="btn btn-gramola"><i class="fas fa-search"></i></span>
                 </div>
             </nav>
 
             <div class="container-fluid" id="pageMainContent">
+                <div class="row justify-content-center h-100">
+                    <div class="h-100 d-flex flex-column">
+                        <div class="row flex-grow-1 songs js-songs">
 
+                        </div>
+                        <div class="row bg-gramola bottom-bar">
+                            <div class="col d-flex flex-column" id="controls" title="controls">
+                                <div class="row js-info info-song">
+                                    <div class="col my-auto">
+                                        <h5 class="js-playerActualSongInfo text-truncate my-auto"></h5>
+                                    </div>
+                                    <div class="col align-self-end col-auto my-auto">
+                                        <div class="form-check form-switch my-auto">
+                                            <input class="form-check-input js-random" type="checkbox" id="flexSwitchCheckDefault">
+                                            <label class="form-check-label text-truncate my-auto" for="flexSwitchCheckDefault">Reproducción aleatoria</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row js-progress my-auto">
+                                    <div class="col">
+                                        <audio controls autoplay class="js-audioPlayer" type="audio/mpeg"></audio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -131,17 +164,17 @@
 
                         <div class="form js-searchSongsForm">
                             @*<div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text" for="inputSearchBy">Buscar por</label>
-                                </div>
-                                <select class="custom-select form-select" id="inputSearchBy" onselect="refreshModalContent()">
-                                    <option selected>Seleccionar...</option>
-                                    <option value="Artist">Artista</option>
-                                    <option value="Title">Título</option>
-                                    <option value="Uploader">Propietario</option>
-                                    <option value="Style">Estilo</option>
-                                </select>
-                            </div>*@
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputSearchBy">Buscar por</label>
+                                    </div>
+                                    <select class="custom-select form-select" id="inputSearchBy" onselect="refreshModalContent()">
+                                        <option selected>Seleccionar...</option>
+                                        <option value="Artist">Artista</option>
+                                        <option value="Title">Título</option>
+                                        <option value="Uploader">Propietario</option>
+                                        <option value="Style">Estilo</option>
+                                    </select>
+                                </div>*@
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputSearch">Buscar</span>

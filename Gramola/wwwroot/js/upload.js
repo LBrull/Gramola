@@ -1,5 +1,8 @@
 ﻿function closeSidebar() {
-    $("#menu-toggle").click();
+    var sidebarClosed = $('.js-sidebar').hasClass('toggled');
+    if (!sidebarClosed) {
+        $("#menu-toggle").click();
+    }
 }
 
 function uploadSong() {

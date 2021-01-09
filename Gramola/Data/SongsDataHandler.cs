@@ -33,7 +33,7 @@ namespace Gramola.Data
 
         public IEnumerable<Song> GetSongsByText(string text)
         {
-            var songs = context.Songs.Where(s => s.artist.ToLower().Contains(text.ToLower()) || s.name.ToLower().Contains(text.ToLower()) || s.uploader.ToLower().Contains(text.ToLower()));
+            var songs = context.Songs.Where(s => s.artist.ToLower().Contains(text.ToLower()) || s.name.ToLower().Contains(text.ToLower()));
             return songs.OrderBy(s => s.artist).ThenBy(s => s.name);
 
         }

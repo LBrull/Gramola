@@ -1,15 +1,15 @@
 ﻿function getBiblioteca() {
-    $('#pageMainContent').empty();
-    if (onMobile() == true) {
-        $('#menu-toggle').click();
-    }
-    $('#pageMainContent').load("templates/_Spinner.html");
+    $('.js-songs').empty();
+    //if (onMobile() == true) {
+    //    $('#menu-toggle').click();
+    //}
+    $('.js-songs').load("templates/_Spinner.html");
     $.ajax({
         url: "/Home/Biblioteca"
     }).done(function (result) {
         $('.js-navBar_title').text('Gramola - Biblioteca');
-        $('#pageMainContent').empty();
-        $('#pageMainContent').html(result);
+        $('.js-songs').empty();
+        $('.js-songs').html(result);
 
         $('.js-songFromBiblioteca').not('.js-audioDownload').on('click', function () {
             $('.js-songFromBiblioteca').removeClass('active');
@@ -23,7 +23,7 @@
         //$('#controls').draggable({
         //    containment: "parent"
         //});
-        $('#controls').removeAttr('hidden');
+        //$('#controls').removeAttr('hidden');
 
         $('.js-audioDownload').off().on('click', function (e) {
             e.stopPropagation();
@@ -62,8 +62,8 @@ function searchSongs() {
         type: 'GET'
     }).done(function (result) {
         $('.js-navBar_title').text('Gramola - Biblioteca');
-        $('#pageMainContent').empty();
-        $('#pageMainContent').html(result);
+        $('.js-songs').empty();
+        $('.js-songs').html(result);
 
         $('.js-songFromBiblioteca').not('.js-audioDownload').on('click', function () {
             $('.js-songFromBiblioteca').removeClass('active');
@@ -73,7 +73,7 @@ function searchSongs() {
             var name = $(this).data('name');
             playSong(id, artist, name);
         });
-        $('#controls').removeAttr('hidden');
+       // $('#controls').removeAttr('hidden');
 
         $("#searchModal").modal('toggle');
 
@@ -82,7 +82,19 @@ function searchSongs() {
             var id = $(this).closest('li').data('id');
             downloadSong(id);
         });
-
-
     });
 }
+
+$(".js-audioPlayer").bind('ended', function () {
+    var random = $('.js-random').is(':checked');
+    var n_elements = $(".js-songFromBiblioteca").length;
+    if (random) {
+        var randomElement = Math.floor(Math.random() * n_elements);
+        $('.js-songFromBiblioteca').get(randomElement).click();
+    }
+    else {
+        var actual = $('.js-songFromBiblioteca.active').index();
+        if (actual == (n_elements - 1)) actual = -1
+        $('.js-songFromBiblioteca').get(actual + 1).click();
+    }
+});

@@ -1,37 +1,20 @@
 ﻿@model List<Song>
 
-<div class="row justify-content-center h-100">
-    <div class="h-100 d-flex flex-column">
-        <div class="row flex-grow-1 songs">
-            <ul class="list-group songs-ul">
-                @foreach (var song in Model)
-                {
-                    <li class="list-group-item list-background-color list-group-item-action js-songFromBiblioteca" data-id="@song.id" data-artist="@song.artist" data-name="@song.name">
-                        <div class="row">
-                            <div class="col text-truncate my-auto">
-                                @song.artist - @song.name
-                            </div>
-                            <div class="col col-auto align-self-end my-auto">
-                                <button type="button" class="btn btn-gramola js-audioDownload">
-                                    <i class="fas fa-arrow-down"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ul>
-        </div>
-        <div class="row bg-gramola bottom-bar">
-            <div class="col d-flex flex-column" id="controls" title="controls">
-                <div class="row js-info">
-                    <div class="col text-truncate info-song"><h5 class="js-playerActualSongInfo mt-3"></h5></div>
+        
+<ul class="list-group songs-ul">
+    @foreach (var song in Model)
+    {
+        <li class="list-group-item list-background-color list-group-item-action js-songFromBiblioteca" data-id="@song.id" data-artist="@song.artist" data-name="@song.name">
+            <div class="row">
+                <div class="col text-truncate my-auto">
+                    @song.artist - @song.name
                 </div>
-                <div class="row js-progress mt-auto">
-                    <div class="col">
-                        <audio controls autoplay class="js-audioPlayer mt-1 mb-1" type="audio/mpeg"></audio>
-                    </div>
+                <div class="col col-auto align-self-end my-auto">
+                    <button type="button" class="btn btn-gramola js-audioDownload">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </li>
+    }
+</ul>
