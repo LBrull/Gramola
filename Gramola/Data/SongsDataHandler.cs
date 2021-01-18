@@ -1,4 +1,5 @@
 ﻿using Gramola.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,15 @@ namespace Gramola.Data
 
         public IEnumerable<Song> GetSongs()
         {
-            return context.Songs.OrderBy(s => s.artist).ThenBy(s => s.name);
+            try
+            {
+                var songs = context.Songs.OrderBy(s => s.artist).ThenBy(s => s.name);
+                return songs;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void AddSong(Song song)

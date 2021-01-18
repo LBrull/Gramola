@@ -44,12 +44,18 @@ namespace Gramola.Controllers
 
         public PartialViewResult Biblioteca()
         {
-            List<Song> allSongs = songsDataHandler.GetSongs().ToList();
+            try
+            {
+                List<Song> allSongs = songsDataHandler.GetSongs().ToList();
 
-            return PartialView("Views/Partial/Biblioteca.cshtml", allSongs);
-            
+                return PartialView("Views/Partial/Biblioteca.cshtml", allSongs);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
-        //[HttpGet("{searchWord}/{searchStyle}")]
+
         public PartialViewResult SearchSongs(string searchWord, string searchStyle)
         {
             SongsDataHandler sdh = new SongsDataHandler();
@@ -70,17 +76,20 @@ namespace Gramola.Controllers
         {
             SongsDataHandler sdh = new SongsDataHandler();
             Song song = sdh.GetSongById(id);
-
-            var filename = song.path;
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+            if (song != null)
             {
-                await stream.CopyToAsync(memory);
-            }
-            memory.Position = 0;
-            string downloadName =song.artist.ToString() + '-' + song.name.ToString() + ".mp3"; 
+                var filename = song.path;
+                var memory = new MemoryStream();
+                using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                string downloadName = song.artist.ToString() + '-' + song.name.ToString() + ".mp3";
 
-            return File(memory, "audio/mpeg", downloadName, true);
+                return File(memory, "audio/mpeg", downloadName, true);
+            }
+            return null;
         }
 
         [HttpPost]
@@ -113,10 +122,31 @@ namespace Gramola.Controllers
                     return StatusCode(422);
                 }
             }
-            catch (Exception e)
-            {
+            catch {
                 return StatusCode(500);
             }
         }
+
+        //public IActionResult SyncLibrary()
+        //{
+        //    var libraryDirectory = @"C:\Users\Laura\Music";
+        //    var allLibrarySongs = Directory.GetFiles(libraryDirectory);
+        //    List<Song> bdSongs = songsDataHandler.GetSongs().ToList();
+        //    foreach (var song in allLibrarySongs)
+        //    {
+        //        if (!bdSongs.Select(s => s.path).Contains(song))
+        //        {
+        //            Song newsong = new Song();
+        //            newsong.path = song;
+        //            newsong.uploader = "Laura";
+        //            newsong.SetStyle("Unknown");
+        //            newsong.name = "aa";
+        //            newsong.artist = "bb";
+        //            newsong.extension = "mp3";
+        //            songsDataHandler.AddSong(newsong);
+        //        }
+        //    }
+        //    return Ok();
+        //}
     }
 }
